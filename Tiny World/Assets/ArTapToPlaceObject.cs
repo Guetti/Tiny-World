@@ -59,7 +59,7 @@ public class ArTapToPlaceObject : MonoBehaviour
 
     private void PlaceObject()
     {
-        var offset = Vector3.up;
+        var offset = Vector3.up / 4f;
         var objectPlaced = Instantiate(objectToPlace, _placementPose.position + offset, _placementPose.rotation);
         
         GameManager.Instance.SetWorld(objectPlaced);

@@ -24,6 +24,7 @@ public class CanvasManager : MonoBehaviour
     public void ShowPlaneDetection()
     {
         detectionScreen.SetActive(true);
+        _planeDetected = false;
     }
 
     public void HidePlaneDetection()

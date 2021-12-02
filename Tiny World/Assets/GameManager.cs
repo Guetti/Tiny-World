@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
     {
         Destroy(_world.gameObject);
         ArTapToPlaceObject.Instance.Restart();
+        EditScreenManager.Instance.ResetSliders();
     }
     
 }

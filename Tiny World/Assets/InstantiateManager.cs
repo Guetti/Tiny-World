@@ -11,7 +11,7 @@ public class InstantiateManager : MonoBehaviour
     [SerializeField] private List<GameObject> rocks;
     [SerializeField] private List<GameObject> decorations;
     [SerializeField] private List<GameObject> grass;
-    [SerializeField] private List<GameObject> fences;
+    [SerializeField] private List<GameObject> fallTrees;
     [SerializeField] private List<GameObject> sandRocks;
     /// <summary>
     /// 0 = trees
@@ -45,21 +45,27 @@ public class InstantiateManager : MonoBehaviour
         {
             case 0:
                 objectToPlace = Instantiate(trees[GetRandomInt(trees.Count)], position, rotation);
+                AudioManager.Instance.PlayTree();
                 break;
             case 1:
                 objectToPlace = Instantiate(rocks[GetRandomInt(rocks.Count)], position, rotation);
+                AudioManager.Instance.PlayRock();
                 break;
             case 2:
                 objectToPlace = Instantiate(decorations[GetRandomInt(decorations.Count)], position, rotation);
+                AudioManager.Instance.PlayFlower();
                 break;
             case 3:
                 objectToPlace = Instantiate(grass[GetRandomInt(grass.Count)], position, rotation);
+                AudioManager.Instance.PlayGrass();
                 break;
             case 4:
-                objectToPlace = Instantiate(fences[GetRandomInt(fences.Count)], position, rotation);
+                objectToPlace = Instantiate(fallTrees[GetRandomInt(fallTrees.Count)], position, rotation);
+                AudioManager.Instance.PlayTree();
                 break;
             case 5:
                 objectToPlace = Instantiate(sandRocks[GetRandomInt(sandRocks.Count)], position, rotation);
+                AudioManager.Instance.PlayRock();
                 break;
             default: 
                 objectToPlace = null;
@@ -69,8 +75,10 @@ public class InstantiateManager : MonoBehaviour
         if (objectToPlace)
         {
             objectToPlace.transform.parent = GameManager.Instance.GetWorldMesh().transform;
-            objectToPlace.transform.localScale = scale;
-            objectToPlace.transform.localPosition -= normal.normalized * 0.05f;
+            //objectToPlace.transform.localScale = scale;
+            objectToPlace.transform.localScale = Vector3.zero;
+            objectToPlace.transform.localPosition -= normal.normalized * 0.01f;
+            objectToPlace.transform.LeanScale(scale, 1f).setEaseOutQuad();
         }
         
     }
