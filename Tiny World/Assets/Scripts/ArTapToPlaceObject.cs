@@ -1,28 +1,51 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
-using UnityEngine.Experimental.XR;
-using UnityEngine.UI;
 using UnityEngine.XR.ARSubsystems;
 
+/// <summary>
+/// Class to show the placement indicator and place and object in the current position.
+/// </summary>
 public class ArTapToPlaceObject : MonoBehaviour
 {
+    /// <summary>
+    /// The singleton.
+    /// </summary>
     public static ArTapToPlaceObject Instance;
+    /// <summary>
+    /// The desired object to place.
+    /// </summary>
     public GameObject objectToPlace;
+    /// <summary>
+    /// Reference to the placement indicator.
+    /// </summary>
     public GameObject placementIndicator;
-    
+    /// <summary>
+    /// The AR Raycast from AR Foundation.
+    /// </summary>
     private ARRaycastManager _arRaycast;
+    /// <summary>
+    /// The placement position
+    /// </summary>
     private Pose _placementPose;
+    /// <summary>
+    /// Bool if the placement position is valid.
+    /// </summary>
     private bool _placementPoseIsValid = false;
+    /// <summary>
+    /// Bool if the object is placed.
+    /// </summary>
     private bool _isPlace;
-    public TextMeshProUGUI debugText;
-    public Camera cam;
 
     private void Awake()
+    {
+        Initialization();
+    }
+    /// <summary>
+    /// Initializes the singleton.
+    /// </summary>
+    private void Initialization()
     {
         Instance = this;
     }
@@ -31,11 +54,12 @@ public class ArTapToPlaceObject : MonoBehaviour
     {
         _arRaycast = FindObjectOfType<ARRaycastManager>();
     }
-
+    /// <summary>
+    /// Restart the plane detection.
+    /// </summary>
     public void Restart()
     {
         _isPlace = false;
-        
     }
 
     private void Update()
@@ -53,19 +77,20 @@ public class ArTapToPlaceObject : MonoBehaviour
             placementIndicator.SetActive(false);
         }
 
-        //debugText.text = cam.transform.rotation.ToString();
-        //Debug.Log(cam.transform.rotation.ToString());
     }
-
+    /// <summary>
+    /// Place the object in the placement indicator position.
+    /// </summary>
     private void PlaceObject()
     {
-        var offset = Vector3.up / 4f;
-        var objectPlaced = Instantiate(objectToPlace, _placementPose.position + offset, _placementPose.rotation);
+        var objectPlaced = Instantiate(objectToPlace, _placementPose.position, _placementPose.rotation);
         
         GameManager.Instance.SetWorld(objectPlaced);
         CanvasManager.Instance.ShowWaitScreen();
     }
-
+    /// <summary>
+    /// Update the placement indicator position.
+    /// </summary>
     private void UpdatePlacementIndicator()
     {
         if (_placementPoseIsValid)
@@ -80,7 +105,9 @@ public class ArTapToPlaceObject : MonoBehaviour
             placementIndicator.SetActive(false);
         }
     }
-
+    /// <summary>
+    /// Update the placement pose.
+    /// </summary>
     private void UpdatePlacementPose()
     {
         var screenCenter = new Vector2 (Screen.width / 2f, Screen.height / 2f);
