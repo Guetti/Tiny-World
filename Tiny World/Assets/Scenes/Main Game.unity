@@ -2740,8 +2740,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 924859559}
-  world: {fileID: 0}
-  worldMesh: {fileID: 0}
+  world: {fileID: 1669232250}
+  worldMesh: {fileID: 1959794492}
 --- !u!1 &1114040580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,6 +3673,11 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: eeb9bd063f22fe14daeb8e3e21390a1b, type: 3}
   - {fileID: 919132149155446097, guid: c2763ff011303bb4e89a5d0ff27d4312, type: 3}
   - {fileID: 919132149155446097, guid: 6e3d55556b1dc1344960a47c04b3c55d, type: 3}
+--- !u!1 &1669232250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6097780382508036383, guid: 82855a24cc578934a891bd3a97a01532, type: 3}
+  m_PrefabInstance: {fileID: 6097780382353007812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1684529541 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8128570082165065997, guid: ed0959d0f86c3424d82ed648613c675b, type: 3}
@@ -3893,6 +3898,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1959794492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1850745265075414629, guid: 82855a24cc578934a891bd3a97a01532, type: 3}
+  m_PrefabInstance: {fileID: 6097780382353007812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1963508182
 GameObject:
   m_ObjectHideFlags: 0

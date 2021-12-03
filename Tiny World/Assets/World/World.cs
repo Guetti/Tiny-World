@@ -5,6 +5,7 @@ using UnityEngine;
 public class World : MonoBehaviour, ITouchable
 {
     [SerializeField] private LeanTweenType ease;
+    private float _yRotation, _xRotation;
     private void Start()
     {
         Expand();
@@ -33,8 +34,9 @@ public class World : MonoBehaviour, ITouchable
     /// <param name="xRotation"></param>
     public void SetXRotation(float xRotation)
     {
-        //transform.Rotate(xRotation, 0, 0);
-        transform.rotation = Quaternion.Euler(xRotation, transform.rotation.y, transform.rotation.z);
+        var rotation = new Vector3(xRotation, _yRotation, transform.localRotation.z);
+        transform.localRotation = Quaternion.Euler(rotation);
+        _xRotation = xRotation;
     }
     /// <summary>
     /// Change the Y rotation.
@@ -42,7 +44,8 @@ public class World : MonoBehaviour, ITouchable
     /// <param name="yRotation"></param>
     public void SetYRotation(float yRotation)
     {
-        //transform.Rotate(0, yRotation, 0);
-        transform.rotation = Quaternion.Euler(transform.rotation.x, yRotation, transform.rotation.z);
+        var rotation = new Vector3(_xRotation, yRotation, transform.localRotation.z);
+        transform.localRotation = Quaternion.Euler(rotation);
+        _yRotation = yRotation;
     }
 }
