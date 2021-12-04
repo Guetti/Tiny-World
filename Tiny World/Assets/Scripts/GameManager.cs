@@ -65,29 +65,8 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
+    }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            MouseTouch();
-        }
-    }
-    /// <summary>
-    /// Detect the touch via mouse.
-    /// </summary>
-    private void MouseTouch()
-    {
-        var ray = camera.ScreenPointToRay(Input.mousePosition);
-        const float rayDistance = 100f;
-        Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
-        if (!Physics.Raycast(ray, out var hit, rayDistance)) return;
-        if (hit.collider == null) return;
-        var touchable = hit.collider.GetComponent<ITouchable>();
-        if (touchable != null)
-        {
-            InstantiateManager.Instance.Generate(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal),
-                Vector3.one / 4f, hit.normal);
-        }
-    }
     /// <summary>
     /// Detect the touch via android device.
     /// </summary>
@@ -113,6 +92,7 @@ public class GameManager : MonoBehaviour
     {
         world = newWorld;
         worldMesh = newWorld.transform.Find("Mesh").gameObject;
+        AudioManager.Instance.PlayWorld();
     }
     /// <summary>
     /// Removes the actual world.

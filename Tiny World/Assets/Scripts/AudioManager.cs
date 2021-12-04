@@ -24,6 +24,10 @@ public class AudioManager : MonoBehaviour
     /// The audio source from flowers.
     /// </summary>
     [SerializeField] private AudioSource flowerSource;
+    /// <summary>
+    /// The audio source from the world.
+    /// </summary>
+    [SerializeField] private AudioSource worldSource;
     
     private void Awake()
     {
@@ -63,5 +67,10 @@ public class AudioManager : MonoBehaviour
     public void PlayFlower()
     {
         flowerSource.Play();
+    }
+
+    public void PlayWorld()
+    {
+        worldSource.Play();
     }
 }
